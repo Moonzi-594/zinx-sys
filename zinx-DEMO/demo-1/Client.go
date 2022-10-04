@@ -8,6 +8,9 @@ import (
 
 /*
 模拟客户端
+在linux中使用nc也可以模拟客户端连接
+netcat: a utility for sending raw data over a network connection.
+=> Arbitrary TCP and UDP connections and listens
 */
 
 func main() {
