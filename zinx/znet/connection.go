@@ -3,6 +3,7 @@ package znet
 import (
 	"fmt"
 	"net"
+	"project/zinx-sys/zinx/utils"
 	"project/zinx-sys/zinx/ziface"
 )
 
@@ -38,7 +39,7 @@ func (c *Connection) StartReader() {
 
 	for {
 		// 读取client数据
-		buf := make([]byte, 512)
+		buf := make([]byte, utils.GlobalObject.MaxPackageSize)
 		_, err := c.Conn.Read(buf)
 		if err != nil {
 			fmt.Println("connection read error:", err)

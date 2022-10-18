@@ -1,8 +1,10 @@
 package znet
 
+// 导包时自动实现其init()方法
 import (
 	"fmt"
 	"net"
+	"project/zinx-sys/zinx/utils"
 	"project/zinx-sys/zinx/ziface"
 )
 
@@ -28,6 +30,7 @@ type Server struct {
 // }
 
 func (s *Server) Start() {
+	fmt.Printf("[Zinx] server name: %s, listening at IP: %s, port: %d...", s.Name, s.IP, s.Port)
 	fmt.Printf("[START] The server is listening on port %d at address %s...\n", s.Port, s.IP)
 
 	go func() {
@@ -87,10 +90,10 @@ func (s *Server) AddRouter(router ziface.IRouter) {
 
 func NewServer(name string) ziface.IServer {
 	return &Server{
-		Name:      name,
+		Name:      utils.GlobalObject.Name,
 		IPVersion: "tcp4",
-		IP:        "0.0.0.0",
-		Port:      8888,
+		IP:        utils.GlobalObject.Host,
+		Port:      utils.GlobalObject.TcpPort,
 		Router:    nil,
 	}
 }
